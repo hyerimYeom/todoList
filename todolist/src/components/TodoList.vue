@@ -2,8 +2,8 @@
    <div class="row">
         <span class="cell col1"> {{ todo.user }} </span>
         <span class="cell col2"> {{ todo.title }} </span>
-        <span class="cell col3"> {{ todo.endDate }} </span>
-        <span class="cell col4"> {{ todo.done }}  </span>
+        <span class="cell col3"> {{ trimDate }} </span>
+        <span class="cell col4"> {{ check }}  </span>
     </div>    
 </template>
 
@@ -14,7 +14,12 @@ export default {
         todo : Object,  
     },
     computed : { 
-        
+        trimDate: function(){
+            return this.todo.endDate.slice(0,10)
+        },
+        check : function(){
+            return this.todo.done === false ? 'X' : 'O'
+        }
     }
 }
 </script>

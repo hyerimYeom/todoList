@@ -8,7 +8,7 @@
       <button class="item">입력</button>
     </div>
     <div id="table">
-        <div class="row">
+        <div class="row text-bold">
             <span class="cell col1">작성자</span>
             <span class="cell col2">내용 </span>
             <span class="cell col3">마감일</span>

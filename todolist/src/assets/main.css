@@ -24,6 +24,7 @@
   width: 20%;
 }
 
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -32,4 +33,8 @@
   color: #2c3e50;
   margin : 0 2em;
   /* margin-top: 60px; */
+}
+
+.text-bold{
+  font-weight: bold;
 }
