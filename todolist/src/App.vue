@@ -4,8 +4,9 @@
     <div>To-Do list</div>
     <!-- 입력창 -->
     <div style="display:flex; flex-direction:row; justify-content:center; align-items:stretch; column-width:100%;">
-      <input style="width:80%" class="item" type="text" name="" id="" value="" placeholder="오늘은 어떤 일이 날 기다리고 있나?"/>
-      <button class="item">입력</button>
+      <input style="width:70%" class="item" type="text" v-model="newTodo.title" placeholder="오늘은 어떤 일이 날 기다리고 있나?"/>
+      <input style="width:10%" class="item" type="date" v-model="newTodo.endDate" />
+      <button class="item" @click="addTodo()">입력</button>
     </div>
     <div id="table">
         <div class="row text-bold">
@@ -29,8 +30,42 @@ export default {
   name: "App",
   data() {
     return {
-      todolist: todolist,
+      title:'',
+      todolist: [...todolist], //원래 todolist
+      newTodo : {
+        user : 'HR',
+        title :'',
+        startDate : '',
+        endDate:'',
+        done : false
+        }, //push할 새로운 todolist
     };
+  },
+  methods: {
+     appendLeadingZeroes : function(n){
+        if(n <= 9){
+          return "0" + n;
+        }
+        return n
+    },
+    addTodo:function(){ 
+      //누를때 들어가야해서,
+      let current_datetime = new Date()
+      // console.log(current_datetime.toString());
+
+      let formatted_date = current_datetime.getFullYear() + "-" + this.appendLeadingZeroes(current_datetime.getMonth() + 1) + "-" + this.appendLeadingZeroes(current_datetime.getDate()) + " " + this.appendLeadingZeroes(current_datetime.getHours()) + ":" + this.appendLeadingZeroes(current_datetime.getMinutes()) + ":" + this.appendLeadingZeroes(current_datetime.getSeconds())
+
+      // console.log(formatted_date);
+      // let current_datetime = new Date();
+      // let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds();
+
+      this.newTodo.startDate = formatted_date;
+
+      console.log(this.newTodo);
+      this.todolist.push(this.newTodo);
+      console.log(this.todolist)
+      // this.todolist[todolist.length].push(this.newTodo);
+    },
   },
   components: {
       TodoList
