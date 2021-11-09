@@ -11,9 +11,11 @@
 export default {
     name : 'TodoList',
     props : { 
-        todo : Object,
-        
+        todo : Object,  
     },
+    computed : { 
+        
+    }
 }
 </script>
 

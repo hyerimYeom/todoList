@@ -2,6 +2,11 @@
 <template>
   <div>
     <div>To-Do list</div>
+    <!-- 입력창 -->
+    <div style="display:flex; flex-direction:row; justify-content:center; align-items:stretch; column-width:100%;">
+      <input style="width:80%" class="item" type="text" name="" id="" value="" placeholder="오늘은 어떤 일이 날 기다리고 있나?"/>
+      <button class="item">입력</button>
+    </div>
     <div id="table">
         <div class="row">
             <span class="cell col1">작성자</span>
@@ -32,3 +37,11 @@ export default {
   },
 };
 </script>
+<style>
+.item{
+
+  flex-grow: 1;
+  /* column-fill : auto; */
+
+}
+</style>
