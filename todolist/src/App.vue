@@ -20,7 +20,7 @@
             :todo = "todo" 
             v-for="(todo, idx) in todolist" 
             :key="idx" 
-            @todoList = "todoList($event, idx)"/>
+            @todo-list = "todoList"/>
         <!-- </div>   -->
     </div>
   </div>
@@ -47,8 +47,8 @@ export default {
     };
   },
   methods: {
-   todoList: function(done, idx){
-        this.todolist[idx].done = !done 
+   todoList: function(id){
+       this.todolist[id].done = !this.todolist[id].done
     },
     appendLeadingZeroes : function(n){
         if(n <= 9){

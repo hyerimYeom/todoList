@@ -3,7 +3,7 @@
         <span class="cell col1"> {{ todo.user }} </span>
         <span class="cell col2"> {{ todo.title }} </span>
         <span class="cell col3"> {{ todoEndDate }} </span>
-        <span class="cell col4" @click="$emit('todoList', todo.done)"> {{ todoDone }}  </span>
+        <span class="cell col4" @click="$emit('todo-list')"> {{ todoDone }}  </span>
     </div>    
 </template>
 
