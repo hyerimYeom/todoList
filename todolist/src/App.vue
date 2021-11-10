@@ -10,20 +10,24 @@
     </div>
     <div id="table">
         <div class="row text-bold">
-            <span class="cell col1">작성자</span>
-            <span class="cell col2">내용 </span>
-            <span class="cell col3">마감일</span>
-            <span class="cell col4">done</span>
+            <span class="cell col1"> 작성자 </span>
+            <span class="cell col2"> 내용 </span>
+            <span class="cell col3"> 마감일 </span>
+            <span class="cell col4"> DONE </span>
         </div>
         <!-- <div class="row" > --> 
-            <TodoList :todo = "todo" v-for="(todo, idx) in todolist" :key="idx" />
+          <List 
+            :todo = "todo" 
+            v-for="(todo, idx) in todolist" 
+            :key="idx" 
+            @todoList = "todoList($event, idx)"/>
         <!-- </div>   -->
     </div>
   </div>
 </template>
 
 <script>
-import TodoList from "./components/TodoList.vue";
+import List from "./components/TodoList.vue";
 import todolist from "./assets/todolist_sample.js";
 
 export default {
@@ -33,6 +37,7 @@ export default {
       title:'',
       todolist: [...todolist], //원래 todolist
       newTodo : {
+        id: todolist.length,
         user : 'HR',
         title :'',
         startDate : '',
@@ -42,7 +47,10 @@ export default {
     };
   },
   methods: {
-     appendLeadingZeroes : function(n){
+   todoList: function(done, idx){
+        this.todolist[idx].done = !done 
+    },
+    appendLeadingZeroes : function(n){
         if(n <= 9){
           return "0" + n;
         }
@@ -68,7 +76,7 @@ export default {
     },
   },
   components: {
-      TodoList
+      List
   },
 };
 </script>
