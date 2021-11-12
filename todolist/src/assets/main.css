@@ -1,21 +1,13 @@
 
-.col5 {
-  width: 10%;
-}
-.col5 span {
-  visibility: none;
-}
-.col5 span:hover {
-  visibility: visible;
-}
-
 #table {
   display: table;
   width: 100%;
 }
 .row {
   display: table-row;
+  color: 1px solid #000000;
 }
+
 .cell {
   display: table-cell;
   padding: 3px;
@@ -36,6 +28,24 @@
 .cursor-ture:hover{
   cursor: pointer;
 }
+
+/*
+- skeyword : show child element when hovering parent element
+- Show child element on parent hover in CSS 
+https://stackoverflow.com/questions/34459841/show-child-element-on-parent-hover-in-css/34459870 */
+
+.row:hover .col5 > p {
+  visibility: visible;
+}
+
+.col5 {
+  width: 10%;
+}
+
+.row .col5 > p{
+  visibility: hidden;
+}
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
