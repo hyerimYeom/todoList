@@ -22,7 +22,7 @@
             v-for="(todo, idx) in todolist" 
             :key="idx" 
             @todo-list = "todoList(idx)"
-            @update = "update(idx, $event)"
+            @update = "update(idx)"
             /> 
         <!-- </div>   -->
     </div>
@@ -37,7 +37,7 @@ export default {
   name: "App",
   data() {
     return {
-      title:'',
+      state_update : 0,
       todolist: [...todolist], //원래 todolist
       originalTodo : {} ,
       newTodo : {
@@ -51,11 +51,13 @@ export default {
     };
   },
   methods: {
-  update : function(id, params){
+  update : function(id){
+      //상태 업데이트로 변경
+      this.state_update = 1;
       //기존 데이터 저장
     this.originalTodo = {...todolist[id]};
-    console.log(params)
-    
+    // while(originalTodo.)
+
   },
    todoList: function(id){
        this.todolist[id].done = !this.todolist[id].done
