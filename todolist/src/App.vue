@@ -14,13 +14,16 @@
             <span class="cell col2"> 내용 </span>
             <span class="cell col3"> 마감일 </span>
             <span class="cell col4"> DONE </span>
+            <span class="cell col5"> </span>
         </div>
         <!-- <div class="row" > --> 
           <List 
             :todo = "todo" 
             v-for="(todo, idx) in todolist" 
             :key="idx" 
-            @todo-list = "todoList"/>
+            @todo-list = "todoList(idx)"
+            @update = "update(idx, $event)"
+            /> 
         <!-- </div>   -->
     </div>
   </div>
@@ -36,6 +39,7 @@ export default {
     return {
       title:'',
       todolist: [...todolist], //원래 todolist
+      originalTodo : {} ,
       newTodo : {
         id: todolist.length,
         user : 'HR',
@@ -47,6 +51,12 @@ export default {
     };
   },
   methods: {
+  update : function(id, params){
+      //기존 데이터 저장
+    this.originalTodo = {...todolist[id]};
+    console.log(params)
+    
+  },
    todoList: function(id){
        this.todolist[id].done = !this.todolist[id].done
     },
@@ -59,20 +69,12 @@ export default {
     addTodo:function(){ 
       //누를때 들어가야해서,
       let current_datetime = new Date()
-      // console.log(current_datetime.toString());
 
       let formatted_date = current_datetime.getFullYear() + "-" + this.appendLeadingZeroes(current_datetime.getMonth() + 1) + "-" + this.appendLeadingZeroes(current_datetime.getDate()) + " " + this.appendLeadingZeroes(current_datetime.getHours()) + ":" + this.appendLeadingZeroes(current_datetime.getMinutes()) + ":" + this.appendLeadingZeroes(current_datetime.getSeconds())
 
-      // console.log(formatted_date);
-      // let current_datetime = new Date();
-      // let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds();
-
       this.newTodo.startDate = formatted_date;
-
-      console.log(this.newTodo);
-      this.todolist.push(this.newTodo);
-      console.log(this.todolist)
-      // this.todolist[todolist.length].push(this.newTodo);
+      this.todolist.push({...this.newTodo});
+      
     },
   },
   components: {

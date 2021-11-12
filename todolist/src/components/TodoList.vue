@@ -1,10 +1,11 @@
 <template>
    <div class="row">
         <span class="cell col1"> {{ todo.user }} </span>
-        <span class="cell col2"> {{ todo.title }} </span>
+        <span class="cell col2" @click="$emit('update', todo.title)"> {{ todo.title }} </span>
         <span class="cell col3"> {{ todoEndDate }} </span>
-        <span class="cell col4" @click="$emit('todo-list')"> {{ todoDone }}  </span>
-    </div>    
+        <span class="cell col4 cursor-ture" @click="$emit('todo-list')"> {{ todoDone }}  </span>
+        <span class="cell col5 cursor-ture" @click="$emit('delete-list')"><span>x</span></span>
+    </div>
 </template>
 
 <script>
@@ -30,5 +31,7 @@ export default {
 </script>
 
 <style>
+
+
 
 </style>
