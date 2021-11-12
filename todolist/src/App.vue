@@ -18,13 +18,14 @@
         </div>
         <!-- <div class="row" > --> 
           <List 
-            :todo = "todo" 
             v-for="(todo, idx) in todolist" 
+            :todo = "todo" 
             :key="idx" 
             @todo-list = "todoList(idx)"
-            @update = "update(idx)"
+            @update = "update(idx, $event)"
             /> 
         <!-- </div>   -->
+        <!-- {{todolist}} -->
     </div>
   </div>
 </template>
@@ -37,29 +38,38 @@ export default {
   name: "App",
   data() {
     return {
-      state_update : 0,
       todolist: [...todolist], //원래 todolist
       originalTodo : {} ,
       newTodo : {
-        id: todolist.length,
-        user : 'HR',
-        title :'',
-        startDate : '',
-        endDate:'',
-        done : false
-        }, //push할 새로운 todolist
+          id: todolist.length,
+          user : 'HR',
+          title :'',
+          startDate : '',
+          endDate:'',
+          done : false
+      }, 
     };
   },
   methods: {
-  update : function(id){
-      //상태 업데이트로 변경
-      this.state_update = 1;
-      //기존 데이터 저장
-    this.originalTodo = {...todolist[id]};
-    // while(originalTodo.)
+    update : function(id, params){
+      //원래값 기억
+      this.originalTodo = {...this.todolist[id]} //해당 Object만 기억
+      console.log('origian : ', this.originalTodo.title)
+      //새로운값 입력
+      this.todolist[id].title = params;
+      console.log('changed : ', this.todolist[id].title)
 
-  },
-   todoList: function(id){
+      // return 1;  //안됌
+
+    //   console.log('o : ',todolist[id].title)
+    //   this.originalTodo = {...todolist[id]};
+    //   console.log('params', params)
+    //  this.todolist[id].title = params
+    
+    //  console.log('c: ',todolist[id].title)
+    
+    },
+    todoList: function(id){
        this.todolist[id].done = !this.todolist[id].done
     },
     appendLeadingZeroes : function(n){
